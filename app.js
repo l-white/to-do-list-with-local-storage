@@ -7,8 +7,6 @@ const allLis = document.querySelectorAll('li');
 let todos = [];
 let completedItems = [];
 
-// savedTodos.push({ task: newTodo.innerText, isCompleted: false });
-
 list.addEventListener('click', function(e){
   if (e.target.tagName === 'BUTTON'){
     e.target.parentElement.remove();
@@ -17,14 +15,9 @@ list.addEventListener('click', function(e){
     completedLi.classList.toggle('completed');
     completedItems.push({"task": completedLi.innerText});
     localStorage.setItem("completed-todos", JSON.stringify(completedItems));
-    /*if (this.classList.toggle('completed') === true){
-      completedItems.push(completedLi.innerText);
-    }*/
     e.target.remove();
   }
 });
-
-
 
 
 //listItems.push({"1": "Complete todo list assignment", "2": "Build memory game"})

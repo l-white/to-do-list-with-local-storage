@@ -16,6 +16,7 @@ list.addEventListener('click', function(e){
     let completedLi = e.target.parentElement;
     completedLi.classList.toggle('completed');
     completedItems.push({"task": completedLi.innerText});
+    localStorage.setItem("completed-todos", JSON.stringify(completedItems));
     /*if (this.classList.toggle('completed') === true){
       completedItems.push(completedLi.innerText);
     }*/
@@ -37,8 +38,9 @@ const addListItem = function(listItem){
 
 //const myName = "Laura";
 //localStorage.setItem('myName', myName);
-localStorage.setItem("completed-todos", JSON.stringify(completedItems));
+
 localStorage.removeItem("myName");
+//localStorage.removeItem("completed-todos");
 //localStorage.setItem('completed-todos', JSON.stringify(completedItems));
 //localStorage.setItem('list', JSON.stringify(list));
 //localStorage.removeItem("todo-list");

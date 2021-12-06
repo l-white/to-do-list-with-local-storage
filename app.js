@@ -1,43 +1,29 @@
 console.log('JS is connected');
+const form = document.querySelector('form');
+const list = document.querySelector('ol');
+const input = document.querySelector('#form-content');
+// get all list items
+const todos = [];
 
-const list = document.getElementById('week-two');
-const completed = document.getElementById('completed-items');
-const allLis = document.querySelectorAll('li');
+// retrieve items from local storage
+const loadedTodos = JSON.parse(localStorage.getItem('tasks')) || [];
 
-let todos = [];
-let completedItems = [];
 
-list.addEventListener('click', function(e){
-  if (e.target.tagName === 'BUTTON'){
-    e.target.parentElement.remove();
-    completed.append(e.target.parentElement);
-    let completedLi = e.target.parentElement;
-    completedLi.classList.toggle('completed');
-    completedItems.push({"task": completedLi.innerText});
-    localStorage.setItem("completed-todos", JSON.stringify(completedItems));
-    e.target.remove();
-  }
+// submit
+// when submitted append to list -- last item
+// save to local storage
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const newTodo = document.createElement('li');
+  newTodo.innerText = input.value;
+  list.appendChild(newTodo);
+  todos.push({task: newTodo.innerText});
+  localStorage.setItem('tasks', JSON.stringify(todos));
 });
 
-
-//listItems.push({"1": "Complete todo list assignment", "2": "Build memory game"})
-/*
-const addListItem = function(listItem){
-  listItems = JSON.parse(localStorage.getItem(list)) || [];
-  listItems.push({"listItem": listItem});
-  localStorage.setItem('list', JSON.stringify(list));
-}
-*/
-
-//const myName = "Laura";
-//localStorage.setItem('myName', myName);
-
-localStorage.removeItem("myName");
 //localStorage.removeItem("completed-todos");
-//localStorage.setItem('completed-todos', JSON.stringify(completedItems));
-//localStorage.setItem('list', JSON.stringify(list));
-//localStorage.removeItem("todo-list");
-//localStorage.setItem('todo-list', JSON.stringify(listItems));
-//const local = localStorage.setItem("completedTodos", JSON.stringify(completedItems));
-//localStorage.removeItem("completed-todos");
-//localStorage.removeItem("completedTodos");
+//localStorage.removeItem("list");
+
+
+// add event listener to listen for click
+// when clicked, remove from list
